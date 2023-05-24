@@ -1244,6 +1244,29 @@ public class InterfazAlohandesApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultado);
 		}
     }
+	/* ****************************************************************
+	 * 			Requisitos Funcionales de Consultas
+	 *****************************************************************/
+	/**
+	 */
+	public void requisitoFuncionalA()
+	{
+		String resultado = "";
+		try 
+    	{
+    		resultado += "\n****************Ejecutando el requisito funcional de consulta1****************\n";
+
+			resultado += alohandes.rfc1();
+
+			panelDatos.actualizarInterfaz(resultado);
+		} 
+    	catch (Exception e) 
+    	{
+			e.printStackTrace();
+			String resultadoE = generarMensajeError(e);
+			panelDatos.actualizarInterfaz(resultadoE);
+		}
+	} 
 
 	/**
 	 * @RF6
@@ -1298,6 +1321,7 @@ public class InterfazAlohandesApp extends JFrame implements ActionListener
 		}
     }
 
+	
 
 	//@RF9: Deshabilitar temporalmente una oferta de alojamiento
 	// y reubicar a las reservas actuales, dandole prioridad a las vigentes
@@ -1563,6 +1587,9 @@ public class InterfazAlohandesApp extends JFrame implements ActionListener
 			panelDatos.actualizarInterfaz(resultadoE);
 		}
     }
+	
+
+
 
 
 	/* ****************************************************************

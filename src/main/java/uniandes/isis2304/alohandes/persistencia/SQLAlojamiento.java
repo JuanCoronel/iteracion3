@@ -37,6 +37,27 @@ class SQLAlojamiento {
 
 	}
 
+	public String rfc1(PersistenceManager pm) {
+		Query q = pm.newQuery(SQL, "SELECT op.nombre as proveedor, sum(r.costo) as ingresos FROM A_alojamientos a INNER JOIN A_Reservas r on a.id_alojamiento = r.alojamiento_reservado INNER JOIN A_operadores op on a.operador = op.id_operador GROUP BY op.nombre ORDER BY sum(r.costo) desc;" );
+	
+		// Ejecutar la consulta y obtener los resultados
+		List<Object[]> results = (List<Object[]>) q.execute();
+		
+		// Construir la cadena de texto con los resultados
+		StringBuilder sb = new StringBuilder();
+		for (Object[] row : results) {
+			String proveedor = (String) row[0];
+			Double ingresos = (Double) row[1];
+			
+			sb.append("Proveedor: ").append(proveedor).append(", Ingresos: ").append(ingresos).append("\n");
+		}
+		
+		// Convertir la cadena de texto a String
+		String resultString = sb.toString();
+		
+		return resultString;
+	}
+	
 	
     public int eliminarAlojamientoPorId (PersistenceManager pm, long idAlojamiento)
 	{

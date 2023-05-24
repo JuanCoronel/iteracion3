@@ -204,6 +204,7 @@ public class PersistenciaAlohandes
 		return tablas.get (0);
 	}
 
+
 	public String darTablaAlojamiento ()
 	{
 		return tablas.get (1);
@@ -328,6 +329,37 @@ public class PersistenciaAlohandes
             pm.close();
         }
 	}
+
+    public String rfc1()
+    {
+        PersistenceManager pm = pmf.getPersistenceManager();
+        Transaction tx=pm.currentTransaction();
+        try
+        {
+            tx.begin();
+            String res = sqlAlojamiento.rfc1(pm);
+            tx.commit();
+            
+            log.trace ("Checkeando...");
+            
+            return res;
+        }
+
+        catch (Exception e)
+        {
+//        	e.printStackTrace();
+        	log.error ("Exception : " + e.getMessage() + "\n" + darDetalleException(e));
+        	return null;
+        }
+        finally
+        {
+            if (tx.isActive())
+            {
+                tx.rollback();
+            }
+            pm.close();
+        }
+    }
 
     public boolean checkearDispAlojamiento(long id_aloj)
 	{

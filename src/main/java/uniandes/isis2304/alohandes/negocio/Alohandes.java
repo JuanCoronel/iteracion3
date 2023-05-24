@@ -78,6 +78,12 @@ public class Alohandes
 		return op;
 	 }
 
+	 public String rfc1()
+	 {
+		String res = pp.rfc1();
+		return res;
+	 }
+
 	 /* ****************************************************************
 	 * 			Métodos para manejar los Servicios
 	 *****************************************************************/
